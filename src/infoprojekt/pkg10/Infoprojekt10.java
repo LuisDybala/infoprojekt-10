@@ -15,8 +15,8 @@ public class Infoprojekt10 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int w = 3; //Kandidaten für die Wahl
-        int n = 10; //Abgegebene Stimmen
+        int w = 0; //Kandidaten für die Wahl
+        int n = 0; //Abgegebene Stimmen
         int[] stimmen = new int [n]; //wer wen gewählt hat
         
         for(int i=0; i<n; i++){
@@ -43,6 +43,7 @@ public class Infoprojekt10 {
             }
             
         }
+        System.out.println(stapel[e-1]);
     }
     
 }
