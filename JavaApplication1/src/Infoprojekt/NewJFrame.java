@@ -28,16 +28,27 @@ public class NewJFrame extends javax.swing.JFrame {
 
         jSlider1 = new javax.swing.JSlider();
         jSlider2 = new javax.swing.JSlider();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jLabel4.setText("Stimmen");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Ausz�hlen");
+        jButton1.setText("Auszählen");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -50,9 +61,9 @@ public class NewJFrame extends javax.swing.JFrame {
 
         jLabel3.setText("Anzahl Stimmen");
 
-        jTextField1.setText("jTextField1");
-
-        jTextField2.setText("jTextField2");
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jScrollPane2.setViewportView(jTextArea2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -71,7 +82,8 @@ public class NewJFrame extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(jTextField1)
                             .addComponent(jTextField2))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -88,8 +100,10 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addGap(7, 7, 7)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -100,12 +114,14 @@ String myString = jTextField1.getText();
 int a = Integer.parseInt(myString);
 
 String myString2 = jTextField2.getText();
-int b = Integer.parseInt(myString);
+int b = Integer.parseInt(myString2);
 
 
         int w = a; //Kandidaten für die Wahl
         int n = b; //Abgegebene Stimmen
         int[] stimmen = new int [n]; //wer wen gewählt hat
+        String stimmen2 = ""; // für Ausgabe später
+        double counter=0;
         
         for(int i=0; i<n; i++){
             stimmen[i] = (int) (Math.random()*w+1);
@@ -131,10 +147,28 @@ int b = Integer.parseInt(myString);
             }
             
         }
+        for (int i=0; i<n; i++){
+            if(stimmen[i]==stapel[e-1]){
+               counter = counter +1;
+            }
+       }
+        double f=n;
+        double halfte = 0.5;
+        if(counter/f > halfte){
         String wert=""+ stapel[e-1];
-        
         jLabel1.setText(wert);
-    
+        }
+        else{
+           String falsch = "Nicht die Absolute Mehrheit!";
+           jLabel1.setText(falsch);
+       }
+        //for (int i=0; i<n; i++){
+           
+         //   stimmen2=stimmen2+ " " + stimmen[i];
+        //}
+        //for (int i=0; i<n; i++){
+        //jTextArea1.setText(stimmen2);
+       // }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -177,8 +211,13 @@ int b = Integer.parseInt(myString);
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSlider jSlider1;
     private javax.swing.JSlider jSlider2;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
